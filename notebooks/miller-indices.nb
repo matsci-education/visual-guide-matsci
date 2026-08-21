@@ -1,0 +1,107 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      3665,         98]
+NotebookOptionsPosition[      2754,         79]
+NotebookOutlinePosition[      3071,         93]
+CellTagsIndexPosition[      3028,         90]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Miller Indices", "Title",ExpressionUUID->"efb9bc37-85d0-4676-b152-929bd4164914"],
+
+Cell["\<\
+A lattice plane is named by its Miller indices (hkl). Take the intercepts the \
+plane makes with the three crystal axes, measured in lattice constants, \
+invert them, and clear any fractions. A zero index means the plane never \
+meets that axis - it runs parallel to it.\
+\>", "Text",ExpressionUUID->"2051c079-1395-4ad3-aa2c-9488b149e353"],
+
+Cell["The (111) plane cuts all three axes at one lattice constant:", "Text",ExpressionUUID->"df0e06f5-8f34-4f23-8f46-2c3bd8961176"],
+
+Cell[BoxData[
+ Graphics3DBox[{
+   {Opacity[0.12], EdgeForm[{GrayLevel[0.5], Thickness[Tiny]}], 
+    CuboidBox[{0, 0, 0}]}, 
+   {RGBColor[0.2, 0.45, 0.8], Opacity[0.55], 
+    Polygon3DBox[{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}]}, 
+   {RGBColor[0.85, 0.2, 0.2], PointSize[0.03], 
+    Point3DBox[{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}]}},
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"a\"", TraditionalForm], 
+    FormBox["\"b\"", TraditionalForm], 
+    FormBox["\"c\"", TraditionalForm]},
+  Boxed->True,
+  ImageSize->340,
+  Lighting->"Neutral",
+  ViewPoint->{2., -2.2, 1.5}]], "Output",ExpressionUUID->"c3e9a9ed-9661-4431-\
+8ef9-ed7cc5ff0843"],
+
+Cell["\<\
+The (110) plane is parallel to the c axis, so it cuts only a and b:\
+\>", "Text",ExpressionUUID->"3ba09949-d1bd-4d4d-a51d-be938a214933"],
+
+Cell[BoxData[
+ Graphics3DBox[{
+   {Opacity[0.12], EdgeForm[{GrayLevel[0.5], Thickness[Tiny]}], 
+    CuboidBox[{0, 0, 0}]}, 
+   {RGBColor[0.2, 0.45, 0.8], Opacity[0.55], 
+    Polygon3DBox[{{1, 0, 0}, {0, 1, 0}}]}, 
+   {RGBColor[0.85, 0.2, 0.2], PointSize[0.03], 
+    Point3DBox[{{1, 0, 0}, {0, 1, 0}}]}},
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"a\"", TraditionalForm], 
+    FormBox["\"b\"", TraditionalForm], 
+    FormBox["\"c\"", TraditionalForm]},
+  Boxed->True,
+  ImageSize->340,
+  Lighting->"Neutral",
+  ViewPoint->{2., -2.2, 1.5}]], "Output",ExpressionUUID->"3d44639d-d1bf-4999-\
+b58f-58c436b5c7bd"],
+
+Cell["\<\
+Try other index sets by editing and evaluating the input below.\
+\>", "Text",ExpressionUUID->"cefa1d9d-fa09-4815-be1a-2b8e584ec15a"],
+
+Cell["draw[1, 0, 0]", "Input",ExpressionUUID->"3a054f15-949a-42a6-85a5-9145f01e5860"]
+},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f789ba07-f1bc-4837-afef-0292e402cf1e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 86, 0, 70, "Title",ExpressionUUID->"efb9bc37-85d0-4676-b152-929bd4164914"],
+Cell[643, 22, 349, 5, 70, "Text",ExpressionUUID->"2051c079-1395-4ad3-aa2c-9488b149e353"],
+Cell[995, 29, 131, 0, 70, "Text",ExpressionUUID->"df0e06f5-8f34-4f23-8f46-2c3bd8961176"],
+Cell[1129, 31, 629, 17, 70, "Output",ExpressionUUID->"c3e9a9ed-9661-4431-8ef9-ed7cc5ff0843"],
+Cell[1761, 50, 146, 2, 70, "Text",ExpressionUUID->"3ba09949-d1bd-4d4d-a51d-be938a214933"],
+Cell[1910, 54, 607, 17, 70, "Output",ExpressionUUID->"3d44639d-d1bf-4999-b58f-58c436b5c7bd"],
+Cell[2520, 73, 142, 2, 70, "Text",ExpressionUUID->"cefa1d9d-fa09-4815-be1a-2b8e584ec15a"],
+Cell[2665, 77, 85, 0, 70, "Input",ExpressionUUID->"3a054f15-949a-42a6-85a5-9145f01e5860"]
+}
+]
+*)
+
+(* End of internal cache information *)

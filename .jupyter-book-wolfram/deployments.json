@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "deployments": {
+    "3240d13955fa94e9": {
+      "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-nb-3240d13955fa94e9",
+      "cloudPath": "myst-widgets/wolfram-nb-3240d13955fa94e9",
+      "deployed": "2026-08-21T12:23:01+00:00",
+      "source": "notebooks/miller-indices.nb"
+    },
+    "4ee41b60f783fe5b": {
+      "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-4ee41b60f783fe5b",
+      "cloudPath": "myst-widgets/wolfram-4ee41b60f783fe5b",
+      "deployed": "2026-08-21T12:23:01+00:00",
+      "code": "(*#|deploy*)\nManipulate[\n drawLattice[type, n],\n {{type, \"FCC\", \"lattice\"}, {\"SC\", \"BCC\", \"FCC\"}},\n {{n, 1, \"cells per edge\"}, 1, 3, 1},\n SaveDefinitions -> True]"
+    },
+    "df99781b8895ad9d": {
+      "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-df99781b8895ad9d",
+      "cloudPath": "myst-widgets/wolfram-df99781b8895ad9d",
+      "deployed": "2026-08-21T12:23:01+00:00",
+      "code": "(*#|deploy*)\nManipulate[\n Column[{\n   Graphics3D[{\n     {Opacity[0.12], EdgeForm[Directive[Gray, Thin]], Cuboid[]},\n     {RGBColor[0.85, 0.45, 0.1], Specularity[White, 40],\n      Sphere[#, nearestNeighborDistance[type]/2] & /@ latticePoints[type, 1]}\n     },\n    Boxed -> False, ImageSize -> 360, ViewPoint -> {1.9, -2.2, 1.4},\n    Lighting -> \"Neutral\", PlotRange -> {{-0.6, 1.6}, {-0.6, 1.6}, {-0.6, 1.6}}],\n   Style[\n    Row[{\"atomic packing factor = \",\n      NumberForm[N[packingFactor[type]], {3, 3}]}], 14]\n   }, Alignment -> Center],\n {{type, \"FCC\", \"lattice\"}, {\"SC\", \"BCC\", \"FCC\"}},\n SaveDefinitions -> True]"
+    },
+    "fd502a703c0c640d": {
+      "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-fd502a703c0c640d",
+      "cloudPath": "myst-widgets/wolfram-fd502a703c0c640d",
+      "deployed": "2026-08-21T12:23:01+00:00",
+      "code": "(*#|deploy*)\nManipulate[\n Module[{c, r, s1, s2, sxr, syr, txyr, m},\n  c = (sx + sy)/2;\n  r = Sqrt[((sx - sy)/2)^2 + txy^2];\n  {s1, s2} = {c + r, c - r};\n  m = RotationMatrix[-theta Degree];\n  {{sxr, txyr}, {txyr, syr}} = m . stressTensor[sx, sy, txy] . Transpose[m];\n  Graphics[{\n    {RGBColor[0.85, 0.92, 0.98], Disk[{c, 0}, r]},\n    {Gray, Dashed, Line[{{-160, 0}, {160, 0}}], Line[{{0, -110}, {0, 110}}]},\n    {Thick, RGBColor[0.2, 0.4, 0.75], Circle[{c, 0}, r]},\n    {Darker[Green], PointSize[0.022], Point[{{s1, 0}, {s2, 0}}]},\n    {RGBColor[0.8, 0.15, 0.15], Thick,\n     Line[{{sxr, txyr}, {syr, -txyr}}],\n     PointSize[0.022], Point[{{sxr, txyr}, {syr, -txyr}}]},\n    {Black,\n     Text[Style[\"\\[Sigma]1 = \" <> ToString[NumberForm[N[s1], {4, 1}]] <>\n        \", \\[Sigma]2 = \" <> ToString[NumberForm[N[s2], {4, 1}]], 12],\n      {c, -r - 18}],\n     Text[Style[\"R = \" <> ToString[NumberForm[N[r], {4, 1}]], 12], {c, r + 14}]}\n    },\n   Axes -> False, PlotRange -> {{-160, 160}, {-115, 115}},\n   ImageSize -> 460, AspectRatio -> Automatic]],\n {{sx, 80, \"\\[Sigma]x (MPa)\"}, -120, 120, 1},\n {{sy, -20, \"\\[Sigma]y (MPa)\"}, -120, 120, 1},\n {{txy, 40, \"\\[Tau]xy (MPa)\"}, -90, 90, 1},\n {{theta, 0, \"element rotation \\[Theta] (\\[Degree])\"}, 0, 90, 1},\n SaveDefinitions -> True]"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: visual-guide-matsci
+  title: A Visual Guide to Materials Science
+  description: Interactive Wolfram Language visualizations for undergraduate materials science.
+  github: https://github.com/matsci-education/visual-guide-matsci
+  plugins:
+    # MyST only loads executable plugins from disk, so wolfram.py is copied in.
+    # Refresh it with:
+    #   curl -O https://raw.githubusercontent.com/matsci-education/jupyterbook-wolfram-plugin/main/wolfram.py
+    - type: executable
+      path: wolfram.py
+  exclude:
+    - README.md
+site:
+  template: book-theme
