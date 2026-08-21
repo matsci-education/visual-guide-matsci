@@ -13,5 +13,6 @@ project:
       path: wolfram.py
   exclude:
     - README.md
+    - workflow.md
 site:
   template: book-theme

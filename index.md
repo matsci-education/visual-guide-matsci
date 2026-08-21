@@ -14,6 +14,8 @@ Wolfram installation to read along.
 
 - [](01.crystal_structures.md) — Bravais lattices, the cubic family, and atomic packing.
 - [](02.stress_and_strain.md) — the stress tensor, principal stresses, and Mohr's circle.
+- [](03.nucleation_and_hysteresis.md) — lattice-gas Monte Carlo, nucleation barriers, and
+  the difference between local and global equilibrium.
 
 ## How this book is built
 

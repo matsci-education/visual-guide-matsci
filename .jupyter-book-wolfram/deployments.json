@@ -1,6 +1,12 @@
 {
   "version": 1,
   "deployments": {
+    "2ffcb6dcb1368969": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-2ffcb6dcb1368969",
+      "cloudPath": "myst-widgets/wolfram-2ffcb6dcb1368969",
+      "deployed": "2026-08-21T13:23:26+00:00",
+      "code": "(*#|deploy*)\ndrawLattice[configurations[0.2], ImageSize -> 400]"
+    },
     "3240d13955fa94e9": {
       "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-nb-3240d13955fa94e9",
       "cloudPath": "myst-widgets/wolfram-nb-3240d13955fa94e9",
@@ -13,11 +19,41 @@
       "deployed": "2026-08-21T12:23:01+00:00",
       "code": "(*#|deploy*)\nManipulate[\n drawLattice[type, n],\n {{type, \"FCC\", \"lattice\"}, {\"SC\", \"BCC\", \"FCC\"}},\n {{n, 1, \"cells per edge\"}, 1, 3, 1},\n SaveDefinitions -> True]"
     },
+    "6c84e77d4af369b6": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-6c84e77d4af369b6",
+      "cloudPath": "myst-widgets/wolfram-6c84e77d4af369b6",
+      "deployed": "2026-08-21T13:23:26+00:00",
+      "code": "(*#|deploy*)\nDynamicModule[\n {micro = drawLattice[downConfigurations[[-1]], ImageSize -> 400],\n  inset =\n   Show[llp,\n    Graphics[{Black, PointSize[0.05], Point[upBranch[[-1]]]}],\n    ImageSize -> 300],\n  upBranchPairs = Transpose[{Keys[upBranch], Values[upBranch]}],\n  downBranchPairs = Transpose[{Keys[downBranch], Values[downBranch]}]\n  },\n Manipulate[\n  Which[\n   direction == \"down\",\n   micro = drawLattice[downConfigurations[[i]], ImageSize -> 200];\n   inset =\n    Show[llp,\n     Graphics[{Black, PointSize[0.05], Point[downBranchPairs[[i]]]}],\n     ImageSize -> 300];,\n   True,\n   micro = drawLattice[upConfigurations[[-i]], ImageSize -> 200];\n   inset =\n    Show[llp,\n     Graphics[{Black, PointSize[0.05], Point[upBranchPairs[[-i]]]}],\n     ImageSize -> 300]\n   ];\n  GraphicsRow[{micro, inset}],\n  {i, 1, Length[downConfigurations], 1},\n  {{direction, \"down\"}, {\"down\", \"up\"}},\n  SaveDefinitions -> True\n  ]\n ]"
+    },
+    "94eb4a006cb5f282": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-94eb4a006cb5f282",
+      "cloudPath": "myst-widgets/wolfram-94eb4a006cb5f282",
+      "deployed": "2026-08-21T13:23:26+00:00",
+      "code": "(*#|deploy*)\nllpWithNuclei =\n ListLinePlot[{upBranchWithNuclei, downBranchWithNuclei},\n  PlotMarkers -> Automatic,\n     Frame -> True,\n     FrameLabel -> {\"\\[CapitalDelta]\\[Mu] = \\\n\\!\\(\\*SubscriptBox[\\(\\[Mu]\\), \\(Orange\\)]\\) - \\!\\(\\*SubscriptBox[\\(\\\n\\[Mu]\\), \\(Blue\\)]\\)\", \"orange fraction\"},\n     PlotLegends -> {\"Increasing \\[CapitalDelta]\\[Mu]\",\n    \"Decreasing \\[CapitalDelta]\\[Mu]\"},\n     PlotRange -> {{-2.1, 2.1}, {-0.05, 1.05}}, ImageSize -> 300,\n  BaseStyle -> {FontSize -> 16}]"
+    },
+    "9be717230ea6483e": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-9be717230ea6483e",
+      "cloudPath": "myst-widgets/wolfram-9be717230ea6483e",
+      "deployed": "2026-08-21T13:34:31+00:00",
+      "code": "(*#|deploy*)\nDynamicModule[\n {micro =\n   latticeGasConfigurationPlot[downConfigurationsWithNuclei[[-1]], ImageSize -> 400],\n  inset =\n   Show[llpWithNuclei,\n    Graphics[{Black, PointSize[0.05],\n      Point[upBranchWithNuclei[[-1]]]}], ImageSize -> 300],\n  upBranchPairs =\n   Transpose[{Keys[upBranchWithNuclei], Values[upBranchWithNuclei]}],\n  downBranchPairs =\n   Transpose[{Keys[downBranchWithNuclei],\n     Values[downBranchWithNuclei]}]\n  },\n Manipulate[\n  Which[\n   direction == \"down\",\n   micro =\n    latticeGasConfigurationPlot[downConfigurationsWithNuclei[[i]], ImageSize -> 200];\n   inset =\n    Show[llpWithNuclei,\n     Graphics[{Black, PointSize[0.05], Point[downBranchPairs[[i]]]}],\n     ImageSize -> 300];,\n   True,\n   micro =\n    latticeGasConfigurationPlot[upConfigurationsWithNuclei[[-i]], ImageSize -> 200];\n   inset =\n    Show[llpWithNuclei,\n     Graphics[{Black, PointSize[0.05], Point[upBranchPairs[[-i]]]}],\n     ImageSize -> 300]\n   ];\n  GraphicsRow[{micro, inset}],\n  {i, 1, Length[downConfigurationsWithNuclei], 1},\n  {{direction, \"down\"}, {\"down\", \"up\"}},\n  SaveDefinitions -> True\n  ]\n ]"
+    },
+    "b9b15ecb9116ada9": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-b9b15ecb9116ada9",
+      "cloudPath": "myst-widgets/wolfram-b9b15ecb9116ada9",
+      "deployed": "2026-08-21T13:23:26+00:00",
+      "code": "(*#|deploy*)\nllp = ListLinePlot[{upBranch, downBranch}, PlotMarkers -> Automatic,\n     Frame -> True,\n     FrameLabel -> {\"\\[CapitalDelta]\\[Mu] = \\\n\\!\\(\\*SubscriptBox[\\(\\[Mu]\\), \\(Orange\\)]\\) - \\!\\(\\*SubscriptBox[\\(\\\n\\[Mu]\\), \\(Blue\\)]\\)\", \"orange fraction\"},\n     PlotLegends -> {\"Increasing \\[CapitalDelta]\\[Mu]\",\n    \"Decreasing \\[CapitalDelta]\\[Mu]\"},\n     PlotRange -> {{-2.1, 2.1}, {-0.05, 1.05}}, ImageSize -> 300,\n  BaseStyle -> {FontSize -> 16}]"
+    },
     "df99781b8895ad9d": {
       "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-df99781b8895ad9d",
       "cloudPath": "myst-widgets/wolfram-df99781b8895ad9d",
       "deployed": "2026-08-21T12:23:01+00:00",
       "code": "(*#|deploy*)\nManipulate[\n Column[{\n   Graphics3D[{\n     {Opacity[0.12], EdgeForm[Directive[Gray, Thin]], Cuboid[]},\n     {RGBColor[0.85, 0.45, 0.1], Specularity[White, 40],\n      Sphere[#, nearestNeighborDistance[type]/2] & /@ latticePoints[type, 1]}\n     },\n    Boxed -> False, ImageSize -> 360, ViewPoint -> {1.9, -2.2, 1.4},\n    Lighting -> \"Neutral\", PlotRange -> {{-0.6, 1.6}, {-0.6, 1.6}, {-0.6, 1.6}}],\n   Style[\n    Row[{\"atomic packing factor = \",\n      NumberForm[N[packingFactor[type]], {3, 3}]}], 14]\n   }, Alignment -> Center],\n {{type, \"FCC\", \"lattice\"}, {\"SC\", \"BCC\", \"FCC\"}},\n SaveDefinitions -> True]"
+    },
+    "e6deedeb2406d332": {
+      "url": "https://www.wolframcloud.com/obj/ccarter/myst-widgets/wolfram-e6deedeb2406d332",
+      "cloudPath": "myst-widgets/wolfram-e6deedeb2406d332",
+      "deployed": "2026-08-21T13:23:26+00:00",
+      "code": "(*#|deploy*)\ndrawLattice[\n ArrayPad[\n  Table[\n   Which[(i - 35)^2 + j^2 <= 50, 1, (i + 35)^2 + j^2 <= 50, -1, True,\n    0 ], {i, -100, 100}, {j, -100, 100}], 1\n  ]]"
     },
     "fd502a703c0c640d": {
       "url": "https://www.wolframcloud.com/obj/gvarnavi/myst-widgets/wolfram-fd502a703c0c640d",
