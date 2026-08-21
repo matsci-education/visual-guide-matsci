@@ -1,0 +1,81 @@
+# This file was created automatically with `myst init --gh-pages` 🪄 💚
+# Ensure your GitHub Pages settings for this repository are set to deploy with **GitHub Actions**.
+
+name: MyST GitHub Pages Deploy
+on:
+  push:
+    # Runs on pushes targeting the default branch
+    branches: [main]
+env:
+  # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
+  # E.g., if your site lives at `https://mydomain.org/myproject`, set `BASE_URL=/myproject`.
+  # If, instead, your site lives at the root of the domain, at `https://mydomain.org`, set `BASE_URL=''`.
+  BASE_URL: /${{ github.event.repository.name }}
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24.x
+      - name: Install MyST
+        run: npm install -g mystmd
+      - name: Build HTML Assets
+        run: myst build --html
+
+      # Editing a {wolfram} cell invalidates its cached deployment (and every
+      # deployable cell below it on the page), which turns figures into
+      # placeholders without failing the build. Surface that in the run summary
+      # rather than blocking the deploy — a placeholder is still publishable.
+      - name: Report undeployed Wolfram cells
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          needle = '"type":"anywidget"'
+          rows, missing = [], 0
+          for f in sorted(pathlib.Path("_build/site/content").glob("*.json")):
+              raw = f.read_text()
+              w, p = raw.count(needle), raw.count("Wolfram widget not deployed")
+              missing += p
+              if w or p:
+                  rows.append(f"| `{f.stem}` | {w} | {p} |")
+          print("## Wolfram figures\n")
+          if rows:
+              print("| page | widgets | undeployed |")
+              print("| --- | ---: | ---: |")
+              print("\n".join(rows))
+          else:
+              print("_No Wolfram figures on this site._")
+          if missing:
+              print(
+                  f"\n> [!WARNING]\n> {missing} figure(s) have no recorded deployment and "
+                  "render a placeholder.\n> Re-publish them on a machine with a licensed "
+                  "`wolframscript`:\n> ```sh\n> JUPYTER_BOOK_WOLFRAM_DEPLOY=1 myst build\n> ```\n"
+                  "> then commit `.jupyter-book-wolfram/deployments.json`."
+              )
+          PY
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_build/html'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
