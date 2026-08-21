@@ -53,6 +53,18 @@ and MyST fetches it at build time.
 | `index.md` | Landing page |
 | `01.crystal_structures.md` | Bravais lattices, packing factor, Miller indices |
 | `02.stress_and_strain.md` | Stress tensor, principal stresses, Mohr's circle |
-| `notebooks/` | Source `.nb` files embedded whole via `{wolfram-notebook}` |
+| `03.nucleation_and_hysteresis.md` | Lattice-gas Monte Carlo, nucleation, local vs global equilibrium |
+| `notebooks/` | Source `.nb` files — embedded whole via `{wolfram-notebook}`, or scaffolded into a page |
+| `notebooks/library/` | Wolfram packages the notebooks load |
+| `workflow.md` | How to turn a notebook into a deployed page |
+| `notebook-cheatsheet.md` | The one-page version of the same |
 | `wolfram.py` | Vendored copy of the plugin |
 | `.jupyter-book-wolfram/deployments.json` | Committed manifest of deployed cloud objects |
+
+## Adding a notebook
+
+Start with [`notebook-cheatsheet.md`](notebook-cheatsheet.md); read
+[`workflow.md`](workflow.md) when something does not behave. The short version: mark setup
+cells as initialization cells, tag each figure with `(* #| label: fig:name *)`, put
+`SaveDefinitions -> True` on every `Manipulate`, delete scratch cells, then scaffold with
+`./wolfram.py --scaffold`.

@@ -7,6 +7,10 @@ an AI agent working unattended.
 `wolfram.py` (vendored at the book root) is the authority on everything here; its module
 docstring is the short version. [`README.md`](README.md) covers the day-to-day build.
 
+**In a hurry?** [`notebook-cheatsheet.md`](notebook-cheatsheet.md) is the one-page version:
+the cell rules, the marker, the path snippet, and a preflight list, with no explanation.
+Come back here when something does not behave.
+
 For a worked result, compare `notebooks/Nucleation_Local_Global_Equilibrium_LGMC.nb`
 against [`03.nucleation_and_hysteresis.md`](03.nucleation_and_hysteresis.md).
 

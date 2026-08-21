@@ -14,5 +14,6 @@ project:
   exclude:
     - README.md
     - workflow.md
+    - notebook-cheatsheet.md
 site:
   template: book-theme
